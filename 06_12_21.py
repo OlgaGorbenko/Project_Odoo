@@ -7,4 +7,4 @@ def factor(n):
         return n*factor(n-1)
 
 
-print(factor(5))
+print(factor(3))
