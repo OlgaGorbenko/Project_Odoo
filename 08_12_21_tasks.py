@@ -24,10 +24,6 @@ if __name__ == '__main__':
     assert_equals(create_phone_number([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), "(000) 000-0000")
 
 
-
-
-
-
 # Task 2
 # Дана строка со словами и числами, разделенными пробелами (один пробел между словами и/или числами).
 # Слова состоят только из букв.
@@ -111,3 +107,17 @@ if __name__ == '__main__':
                        'Petersen between 1845 and 1910 year') == 3755
     assert sum_numbers('5 plus 6 is') == 11
     assert sum_numbers('') == 0
+
+
+# def time_converter(time):
+#     # replace this for solution
+#     return time
+#
+#
+# if __name__ == '__main__':
+#     print("Example:")
+#     print(time_converter('12:30 p.m.'))
+#
+#     assert time_converter('12:30 p.m.') == '12:30'
+#     assert time_converter('9:00 a.m.') == '09:00'
+#     assert time_converter('11:15 p.m.') == '23:15'
