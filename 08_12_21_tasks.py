@@ -36,40 +36,71 @@ def check(words):
     words_as_list = words.split()
     if len(words_as_list) < 3:
         return False
-    # elif len(words_as_list) == 3 and ("".join(words_as_list)).isalpha():
-    #     return True
     else:
         n = 0
+        new_list = []
         while n != len(words_as_list) - 2:
-            new_list = ["".join(words_as_list[n:n + 3])]
-            n += 1
             new_list.append("".join(words_as_list[n:n + 3]))
-
-            return new_list, n
-
-            # for i in new_list:
-            #     if i.isalpha() in new_list:
-            #         return True
-            #     else:
-            #         return False
+            n += 1
+        if [x for x in new_list if x.isalpha()]:
+            return True
+        else:
+            return False
 
 
-# lst = ["cat", "5", "zet"]
+if __name__ == '__main__':
+    assert check("Hello World hello") is True, "Hello"
+    assert check("He is 123 man") is False, "123 man"
+    assert check("1 2 3 4 5") is False, "Digits"
+    assert check("bla bla bla bla") is True, "Bla Bla"
+    assert check("Hi") is False, "Hi"
+
+
+# Task 3
+
+# def convert1(sentence):
+#     sentence_as_list = list(sentence.split())
+#     return sentence_as_list
 #
-# print("".join(lst[0:3]))
+# sentence = "I never say never you always say always"
+# sentence_as_list = convert1(sentence)
+# dict_sentence = dict()
+# convert1(sentence)
+#
+# for word in sentence_as_list:
+#     dict_sentence[word] = dict_sentence.get(word, 0) +1
+#
+# print(dict_sentence, sentence_as_list)
+
+import collections
 
 
-# print("hjkk2kvv".isalpha())
+# def translate(text: str) -> str:
+#     new_string = text.replace(" ", "")
+#     new_dict = dict(collections.Counter(new_string))
+#
+#     for key, value in new_dict:
+#         lst = []
+#         if value % 3 == 0:
+#             lst.append[key]
+#     return lst
 
-print(check("Hello World hello 2 new"))
+
+# print(translate("hieeela laooo"))
 
 
-# if __name__ == '__main__':
-#     assert check("Hello World hello") is True, "Hello"
-#     assert check("He is 123 man") is False, "123 man"
-#     assert check("1 2 3 4 5") is False, "Digits"
-#     assert check("bla bla bla bla") is True, "Bla Bla"
-#     assert check("Hi") is False, "Hi"
+# if __name__ == "__main__":
+#     print("Example:")
+#     print(translate("hieeelalaooo"))
+#
+#     assert translate("hieeelalaooo") == "hello"
+#     assert translate("hoooowe yyyooouuu duoooiiine") == "how you doin"
+#     assert translate("aaa bo cy da eee fe") == "a b c d e f"
+#     assert translate("sooooso aaaaaaaaa") == "sos aaa"
+
+
+
+
 
 
 
@@ -108,7 +139,7 @@ if __name__ == '__main__':
     assert sum_numbers('5 plus 6 is') == 11
     assert sum_numbers('') == 0
 
-
+# Task 5
 # def time_converter(time):
 #     # replace this for solution
 #     return time
@@ -121,3 +152,58 @@ if __name__ == '__main__':
 #     assert time_converter('12:30 p.m.') == '12:30'
 #     assert time_converter('9:00 a.m.') == '09:00'
 #     assert time_converter('11:15 p.m.') == '23:15'
+
+
+# Task 6
+# Класические крестики нолики
+# Вам дан список с текстовыми значениями
+# Нужно определить кто выиграл крестики или нолики
+# Входные данные: Список.
+# Выходные данные: Строка.
+
+def check(game_result):
+    if game_result[0][0] == game_result[0][1] == game_result[0][2]:
+        return f"{game_result[0][0]}"
+    if game_result[1][0] == game_result[1][1] == game_result[1][2]:
+        return f"{game_result[1][0]}"
+    if game_result[2][0] == game_result[2][1] == game_result[2][2]:
+        return f"{game_result[2][0]}"
+
+    if game_result[0][0] == game_result[1][0] == game_result[2][0]:
+        return f"{game_result[0][0]}"
+    if game_result[0][1] == game_result[1][1] == game_result[2][1]:
+        return f"{game_result[0][1]}"
+    if game_result[0][2] == game_result[1][2] == game_result[2][2]:
+        return f"{game_result[0][2]}"
+
+    if game_result[0][0] == game_result[1][1] == game_result[2][2]:
+        return f"{game_result[0][0]}"
+    if game_result[0][2] == game_result[1][1] == game_result[2][0]:
+        return f"{game_result[0][2]}"
+
+    else:
+        return "D"
+
+print(check([
+    "OOX",
+    "XXO",
+    "OXX"]))
+
+
+if __name__ == '__main__':
+    assert check([
+        "X.O",
+        "XX.",
+        "XOO"]) == "X", "Xs wins"
+    assert check([
+        "OO.",
+        "XOX",
+        "XOX"]) == "O", "Os wins"
+    assert check([
+        "OOX",
+        "XXO",
+        "OXX"]) == "D", "Draw"
+    assert check([
+        "O.X",
+        "XX.",
+        "XOO"]) == "X", "Xs wins again"
