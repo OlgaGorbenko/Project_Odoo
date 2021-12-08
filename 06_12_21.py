@@ -5,7 +5,7 @@ from typing import List, Any
 # def unique_list(elements: List[Any]) -> list:
 #     return list(set(elements))    # It`s the best option.
 
-def unique_list(elements: List[Any]) -> list:    # It`s another solving.
+def unique_list(elements: List[Any]) -> list:    # It`s another solution.
     new_list = []
     for element in elements:
         if element not in new_list:
@@ -68,7 +68,7 @@ if __name__ == '__main__':
 
 ### Task 4 ###
 
-# def replace_last(line: list) -> list:    # Solving #1
+# def replace_last(line: list) -> list:    # Solution #1
 #     if not line:
 #         return line
 #     else:
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 #         new_list.extend(line[:-1])
 #         return new_list
 
-def replace_last(line: list) -> list:    # Solving #2
+def replace_last(line: list) -> list:    # Solution #2
     if not line:
         return line
     else:
