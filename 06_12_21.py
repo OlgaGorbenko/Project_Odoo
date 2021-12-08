@@ -1,11 +1,11 @@
-# Task 1
+### Task 1 ###
 
 from typing import List, Any
 
 # def unique_list(elements: List[Any]) -> list:
 #     return list(set(elements))    # It`s the best option.
 
-def unique_list(elements: List[Any]) -> list:
+def unique_list(elements: List[Any]) -> list:    # It`s another solving.
     new_list = []
     for element in elements:
         if element not in new_list:
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     assert unique_list([1]) == [1]
 
 
-# Task 2
+### Task 2 ###
 
 from typing import List, Any
 
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     assert all_the_same([1]) is True
 
 
-# Task 3
+### Task 3 ###
 
 def array_diff(a, b):
     return [x for x in a if x not in b]
@@ -66,9 +66,9 @@ if __name__ == '__main__':
     assert_equals(array_diff([1, 2, 3], [1, 2]), [3], "a was [1,2,3], b was [1, 2], expected [3]")
 
 
-# Task 4
+### Task 4 ###
 
-# def replace_last(line: list) -> list:
+# def replace_last(line: list) -> list:    # Solving #1
 #     if not line:
 #         return line
 #     else:
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 #         new_list.extend(line[:-1])
 #         return new_list
 
-def replace_last(line: list) -> list:
+def replace_last(line: list) -> list:    # Solving #2
     if not line:
         return line
     else:
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     assert replace_last([]) == []
 
 
-# Task 5
+### Task 5 ###
 
 from typing import Iterable
 
@@ -106,7 +106,7 @@ def except_zero(items: list) -> Iterable:
         while indexes_of_zero:
             for index in indexes_of_zero:
                 items.insert(index, 0)
-            indexes_of_zero.remove(index)
+            indexes_of_zero.remove(index)    # в этои месте ругаеся на index, но код работает, тесты выполняются
             return items
     else:
         return sorted(items)
@@ -121,10 +121,6 @@ if __name__ == '__main__':
     assert list(except_zero([0, 0, 0, 1, 0])) == [0, 0, 0, 1, 0]
     assert list(except_zero([4, 5, 3, 1, 1])) == [1, 1, 3, 4, 5]
     assert list(except_zero([0, 0])) == [0, 0]
-
-
-
-
 
 
 
