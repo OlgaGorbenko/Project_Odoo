@@ -48,43 +48,22 @@ if __name__ == '__main__':
     assert all_the_same([]) is True
     assert all_the_same([1]) is True
 
-print("\n###\n")
+
 # Task 3
 
 def array_diff(a, b):
-    while a:
-        for i in a:
-            if i in b:
-                a.remove(i)
-                b.remove(i)
-            return a+b
-
-def array_dif(a, b):
-    for i in a:
-        if i in b:
-           return "yes"
-        else:
-            return "no"
-
-a = [1, 2, 3]
-b = [1, 2, 4]
-
-print(array_dif(a, b))
-
-
-
+    return [x for x in a if x not in b]
 
 def assert_equals(a, b, c):
     assert a == b, c
 
-
-# if __name__ == '__main__':
-#     assert_equals(array_diff([1, 2], [1]), [2], "a was [1,2], b was [1], expected [2]")
-#     assert_equals(array_diff([1, 2, 2], [1]), [2, 2], "a was [1,2,2], b was [1], expected [2,2]")
-#     assert_equals(array_diff([1, 2, 2], [2]), [1], "a was [1,2,2], b was [2], expected [1]")
-#     assert_equals(array_diff([1, 2, 2], []), [1, 2, 2], "a was [1,2,2], b was [], expected [1,2,2]")
-#     assert_equals(array_diff([], [1, 2]), [], "a was [], b was [1,2], expected []")
-#     assert_equals(array_diff([1, 2, 3], [1, 2]), [3], "a was [1,2,3], b was [1, 2], expected [3]")
+if __name__ == '__main__':
+    assert_equals(array_diff([1, 2], [1]), [2], "a was [1,2], b was [1], expected [2]")
+    assert_equals(array_diff([1, 2, 2], [1]), [2, 2], "a was [1,2,2], b was [1], expected [2,2]")
+    assert_equals(array_diff([1, 2, 2], [2]), [1], "a was [1,2,2], b was [2], expected [1]")
+    assert_equals(array_diff([1, 2, 2], []), [1, 2, 2], "a was [1,2,2], b was [], expected [1,2,2]")
+    assert_equals(array_diff([], [1, 2]), [], "a was [], b was [1,2], expected []")
+    assert_equals(array_diff([1, 2, 3], [1, 2]), [3], "a was [1,2,3], b was [1, 2], expected [3]")
 
 
 # Task 4
@@ -117,38 +96,33 @@ if __name__ == '__main__':
 
 # Task 5
 
-print(55555555)
-
 from typing import Iterable
 
 
 def except_zero(items: list) -> Iterable:
     if 0 in items:
         indexes_of_zero = [index for index in range(len(items)) if items[index] == 0]
-        items.remove(0)
-        items.sort()
-        for i in indexes_of_zero:
-            items.insert(i, 0)
+        items = sorted([x for x in items if x != 0])
+        while indexes_of_zero:
+            for index in indexes_of_zero:
+                items.insert(index, 0)
+            indexes_of_zero.remove(index)
             return items
     else:
-        return items
+        return sorted(items)
 
 
-print(list(except_zero([5, 3, 4, 1, 4, 7])))
+if __name__ == '__main__':
+    print("Example:")
+    print(list(except_zero([5, 3, 0, 0, 4, 1, 4, 0, 7])))
+
+    assert list(except_zero([5, 3, 0, 0, 4, 1, 4, 0, 7])) == [1, 3, 0, 0, 4, 4, 5, 0, 7]
+    assert list(except_zero([0, 2, 3, 1, 0, 4, 5])) == [0, 1, 2, 3, 0, 4, 5]
+    assert list(except_zero([0, 0, 0, 1, 0])) == [0, 0, 0, 1, 0]
+    assert list(except_zero([4, 5, 3, 1, 1])) == [1, 1, 3, 4, 5]
+    assert list(except_zero([0, 0])) == [0, 0]
 
 
-# if __name__ == '__main__':
-#     print("Example:")
-#     print(list(except_zero([5, 3, 0, 0, 4, 1, 4, 0, 7])))
-
-    #assert list(except_zero([5, 3, 0, 0, 4, 1, 4, 0, 7])) == [1, 3, 0, 0, 4, 4, 5, 0, 7]
-    # assert list(except_zero([0, 2, 3, 1, 0, 4, 5])) == [0, 1, 2, 3, 0, 4, 5]
-    # assert list(except_zero([0, 0, 0, 1, 0])) == [0, 0, 0, 1, 0]
-    # assert list(except_zero([4, 5, 3, 1, 1])) == [1, 1, 3, 4, 5]
-    # assert list(except_zero([0, 0])) == [0, 0]
-
-lst = [5, 3, 4, 1, 4, 7]
-print(lst.sort())
 
 
 
