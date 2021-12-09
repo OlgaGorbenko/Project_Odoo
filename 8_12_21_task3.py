@@ -1,10 +1,10 @@
 import collections
 
 
-
 def translate(text: str) -> str:
     vowels = ["a", "e", "i", "o", "u", "y"]
-    consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+    consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n",
+                  "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
 
     start_lst = list(text)
 
@@ -21,7 +21,6 @@ def translate(text: str) -> str:
     for x, y in new_dict.items():
         if y % 3 == 0:
             first_list.append(x)
-    # print(first_list)
 
     new_text = "".join(start_lst)
 
@@ -32,7 +31,6 @@ def translate(text: str) -> str:
         first_list.remove(i)
 
     return new_text
-
 
 
 if __name__ == "__main__":

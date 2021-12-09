@@ -64,29 +64,35 @@ import collections
 
 
 def translate(text: str) -> str:
-    new_string = text.replace(" ", "")
-    new_dict = dict(collections.Counter(new_string))
-    first_list = []
-    second_list = []
     vowels = ["a", "e", "i", "o", "u", "y"]
+    consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n",
+                  "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+
+    start_lst = list(text)
+
+    idxs_of_extra_vowels = []
+    for i, v in enumerate(start_lst):
+        if v in consonants and v not in vowels:
+            idxs_of_extra_vowels.append(i+1)
+
+    for i in idxs_of_extra_vowels:
+        start_lst[i] = ""
+
+    first_list = []
+    new_dict = dict(collections.Counter(start_lst))
     for x, y in new_dict.items():
-        if y % 3 == 0 or y % 4 == 0 or y % 5 == 0:
+        if y % 3 == 0:
             first_list.append(x)
-        if y < 3:
-            second_list.append(x)
-    second_list = [x for x in second_list if x in vowels]
+
+    new_text = "".join(start_lst)
+
     while first_list:
         for i in first_list:
-            if i*4 in text:
-                text = text.replace(i*4, i)
-            else:
-                text = text.replace(i*3, i)
+            if i in vowels and i*3 in new_text:
+                new_text = new_text.replace(i*3, i)
         first_list.remove(i)
-    while second_list:
-        for i in second_list:
-            text = text.replace(i, "")
-        second_list.remove(i)
-    return text
+
+    return new_text
 
 
 if __name__ == "__main__":
@@ -94,9 +100,9 @@ if __name__ == "__main__":
     print(translate("hieeelalaooo"))
 
     assert translate("hieeelalaooo") == "hello"
-#     assert translate("hoooowe yyyooouuu duoooiiine") == "how you doin"     # how you duoin
-#     assert translate("aaa bo cy da eee fe") == "a b c d e f"               # a b c da e fe
-#     assert translate("sooooso aaaaaaaaa") == "sos aaa"                     # soso aaa
+    assert translate("hoooowe yyyooouuu duoooiiine") == "how you doin"
+    assert translate("aaa bo cy da eee fe") == "a b c d e f"
+    assert translate("sooooso aaaaaaaaa") == "sos aaa"
 
 
 
