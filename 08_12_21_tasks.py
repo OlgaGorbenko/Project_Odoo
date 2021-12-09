@@ -78,19 +78,19 @@ def translate(text: str) -> str:
     for i in idxs_of_extra_vowels:
         start_lst[i] = ""
 
-    first_list = []
+    list_of_three = []
     new_dict = dict(collections.Counter(start_lst))
     for x, y in new_dict.items():
         if y % 3 == 0:
-            first_list.append(x)
+            list_of_three.append(x)
 
     new_text = "".join(start_lst)
 
-    while first_list:
-        for i in first_list:
+    while list_of_three:
+        for i in list_of_three:
             if i in vowels and i*3 in new_text:
                 new_text = new_text.replace(i*3, i)
-        first_list.remove(i)
+        list_of_three.remove(i)
 
     return new_text
 
