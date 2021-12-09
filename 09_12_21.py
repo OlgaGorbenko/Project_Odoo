@@ -82,8 +82,6 @@ def validate(card_number):
         return False
 
 
-print(validate("4977949494949497"))
-
 if __name__ == '__main__':
     print("Example:")
     print('4003600000000014 =', validate('4003600000000014'))
