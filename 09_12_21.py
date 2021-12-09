@@ -18,7 +18,6 @@
 
 def get_custom_cm(custom_value):
     standard_values = [180, 140, 160, 150, 170]
-    # new_value = custom_value - (custom_value//10)*10
     if custom_value > standard_values[0]:
         return abs(standard_values[0] - custom_value)
     else:
@@ -26,8 +25,6 @@ def get_custom_cm(custom_value):
         delt = abs(new_value - custom_value)
         return delt
 
-
-print(get_custom_cm(187))
 
 if __name__ == '__main__':
     print("Example:")
@@ -58,36 +55,44 @@ if __name__ == '__main__':
 
 
 def validate(card_number):
-    sum_1 = 0
+
     list_numbers = list(card_number)
     list_numbers = [int(x) for x in list_numbers]
-    new_list = [x ** 2 for x in list_numbers[::-2]]
+    new_list = [x*2 for x in list_numbers[::2]]
     tmp = []
     for i in new_list:
         if i >= 10:
             tmp.append(i)
-            new_list.remove(i)
-    tmp_2 = []
-    for x in tmp:
-        x = list(str(x))
-        tmp_2.append(x)
+    new_list_3 = [x for x in new_list if x < 10]
+    sum_1 = sum(new_list_3)
 
-    sum_3 = 0
+    for ind, a in enumerate(tmp):
+        x = [int(z) for z in str(a)]
+        tmp[ind] = sum(x)
+    sum_3 = sum(tmp)
 
-    sum_1 = sum(new_list)
-    new_list_2 = [x for x in list_numbers[::2]]
+    new_list_2 = [x for x in list_numbers[::-2]]
     sum_2 = sum(new_list_2)
+
     sum_all = sum_1 + sum_2 + sum_3
+    lst = [int(z) for z in str(sum_all)]
+    if lst[-1] == 0:
+        return True
+    else:
+        return False
 
 
-# if __name__ == '__main__':
-#     print("Example:")
-#     print('4003600000000014 =', validate('4003600000000014'))
-#
-#     assert validate('4003600000000014') is True
-#     assert validate('4400 0000 0000 0008') is True
-#     assert validate('4000 1600 0000 0004 ') is True
-#     assert validate('4977 9494 9494 9497') is True
+print(validate("4977949494949497"))
+
+if __name__ == '__main__':
+    print("Example:")
+    print('4003600000000014 =', validate('4003600000000014'))
+
+    assert validate('4003600000000014') is True
+    assert validate('4400000000000008') is True
+    assert validate('4000160000000004') is True
+    assert validate('4977949494949497') is True
+
 
 
 
