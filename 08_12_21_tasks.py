@@ -24,6 +24,7 @@ if __name__ == '__main__':
     assert_equals(create_phone_number([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), "(000) 000-0000")
 
 
+
 # Task 2
 # Дана строка со словами и числами, разделенными пробелами (один пробел между словами и/или числами).
 # Слова состоят только из букв.
@@ -56,54 +57,46 @@ if __name__ == '__main__':
     assert check("Hi") is False, "Hi"
 
 
-# Task 3
 
-# def convert1(sentence):
-#     sentence_as_list = list(sentence.split())
-#     return sentence_as_list
-#
-# sentence = "I never say never you always say always"
-# sentence_as_list = convert1(sentence)
-# dict_sentence = dict()
-# convert1(sentence)
-#
-# for word in sentence_as_list:
-#     dict_sentence[word] = dict_sentence.get(word, 0) +1
-#
-# print(dict_sentence, sentence_as_list)
+# Task 3
 
 import collections
 
 
-# def translate(text: str) -> str:
-#     new_string = text.replace(" ", "")
-#     new_dict = dict(collections.Counter(new_string))
-#
-#     for key, value in new_dict:
-#         lst = []
-#         if value % 3 == 0:
-#             lst.append[key]
-#     return lst
+def translate(text: str) -> str:
+    new_string = text.replace(" ", "")
+    new_dict = dict(collections.Counter(new_string))
+    first_list = []
+    second_list = []
+    vowels = ["a", "e", "i", "o", "u", "y"]
+    for x, y in new_dict.items():
+        if y % 3 == 0 or y % 4 == 0 or y % 5 == 0:
+            first_list.append(x)
+        if y < 3:
+            second_list.append(x)
+    second_list = [x for x in second_list if x in vowels]
+    while first_list:
+        for i in first_list:
+            if i*4 in text:
+                text = text.replace(i*4, i)
+            else:
+                text = text.replace(i*3, i)
+        first_list.remove(i)
+    while second_list:
+        for i in second_list:
+            text = text.replace(i, "")
+        second_list.remove(i)
+    return text
 
 
-# print(translate("hieeela laooo"))
+if __name__ == "__main__":
+    print("Example:")
+    print(translate("hieeelalaooo"))
 
-
-# if __name__ == "__main__":
-#     print("Example:")
-#     print(translate("hieeelalaooo"))
-#
-#     assert translate("hieeelalaooo") == "hello"
-#     assert translate("hoooowe yyyooouuu duoooiiine") == "how you doin"
-#     assert translate("aaa bo cy da eee fe") == "a b c d e f"
-#     assert translate("sooooso aaaaaaaaa") == "sos aaa"
-
-
-
-
-
-
-
+    assert translate("hieeelalaooo") == "hello"
+#     assert translate("hoooowe yyyooouuu duoooiiine") == "how you doin"     # how you duoin
+#     assert translate("aaa bo cy da eee fe") == "a b c d e f"               # a b c da e fe
+#     assert translate("sooooso aaaaaaaaa") == "sos aaa"                     # soso aaa
 
 
 
@@ -123,9 +116,6 @@ def sum_numbers(text: str) -> int:
     return sum_of_numbers
 
 
-print(sum_numbers('who is 1 1st 2 here'))
-
-
 if __name__ == '__main__':
     print("Example:")
     print(sum_numbers('hi'))
@@ -140,6 +130,7 @@ if __name__ == '__main__':
     assert sum_numbers('') == 0
 
 
+
 # Task 5
 
 import datetime
@@ -147,7 +138,7 @@ import datetime
 def time_converter(time):
     if len(time) == 10:
         if "p" in time:
-            if int(time[:1]) == 12:
+            if int(time[:2]) == 12:
                 return time[:5]
             else:
                 a = datetime.time(int(time[:2])+12, int(time[3:5]))
@@ -160,34 +151,15 @@ def time_converter(time):
             a = datetime.time(int(time[:1]), int(time[2:4]))
             return str(a)[:5]
 
-    # if len(time) == 9:
-    #     if "p" in time:
-    #         return
-    #     else:
-    # else:
-    #     if "p" in time:
-    #         if int(time[:1]) == 12:
-    #             return time[:5]
-    #         else:
-    #             hours = int(time[:2]) + 12
-    #             minutes = time[2:5]
-    #             return f"{hours}{minutes}"
-    #     else:
-    #         return time[:5]
 
+if __name__ == '__main__':
+    print("Example:")
+    print(time_converter('12:30 p.m.'))
 
+    assert time_converter('12:30 p.m.') == '12:30'
+    assert time_converter('9:00 a.m.') == '09:00'
+    assert time_converter('11:15 p.m.') == '23:15'
 
-
-
-print(time_converter('12:30 p.m.'))
-
-# if __name__ == '__main__':
-#     print("Example:")
-#     print(time_converter('12:30 p.m.'))
-#
-#     assert time_converter('12:30 p.m.') == '12:30'
-#     assert time_converter('9:00 a.m.') == '09:00'
-#     assert time_converter('11:15 p.m.') == '23:15'
 
 
 # Task 6
@@ -219,11 +191,6 @@ def check(game_result):
 
     else:
         return "D"
-
-print(check([
-    "OOX",
-    "XXO",
-    "OXX"]))
 
 
 if __name__ == '__main__':
