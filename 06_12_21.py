@@ -62,9 +62,8 @@
 
 
 def validate(card_number):
-
     list_numbers = list(card_number)
-    list_numbers = [int(x) for x in list_numbers]
+    list_numbers = [int(x) for x in list_numbers if x.isdigit()]
     new_list = [x*2 for x in list_numbers[::2]]
     tmp = []
     for i in new_list:
@@ -89,16 +88,16 @@ def validate(card_number):
         return False
 
 
-print(validate("4977949494949497"))
+print(validate('4400 0000 0000 0008'))
 
 if __name__ == '__main__':
     print("Example:")
     print('4003600000000014 =', validate('4003600000000014'))
 
     assert validate('4003600000000014') is True
-    assert validate('4400000000000008') is True
-    assert validate('4000160000000004') is True
-    assert validate('4977949494949497') is True
+    assert validate('4400 0000 0000 0008') is True
+    assert validate('4000 1600 0000 0004 ') is True
+    assert validate('4977 9494 9494 9497') is True
 
 
 
