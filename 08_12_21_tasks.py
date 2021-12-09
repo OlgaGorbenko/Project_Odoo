@@ -139,12 +139,48 @@ if __name__ == '__main__':
     assert sum_numbers('5 plus 6 is') == 11
     assert sum_numbers('') == 0
 
+
 # Task 5
-# def time_converter(time):
-#     # replace this for solution
-#     return time
-#
-#
+
+import datetime
+
+def time_converter(time):
+    if len(time) == 10:
+        if "p" in time:
+            if int(time[:1]) == 12:
+                return time[:5]
+            else:
+                a = datetime.time(int(time[:2])+12, int(time[3:5]))
+                return f"{a.hour}:{a.minute}"
+    else:
+        if "p" in time:
+            a = datetime.time(int(time[:1]) + 12, int(time[2:4]))
+            return f"{a.hour}:{a.minute}"
+        else:
+            a = datetime.time(int(time[:1]), int(time[2:4]))
+            return str(a)[:5]
+
+    # if len(time) == 9:
+    #     if "p" in time:
+    #         return
+    #     else:
+    # else:
+    #     if "p" in time:
+    #         if int(time[:1]) == 12:
+    #             return time[:5]
+    #         else:
+    #             hours = int(time[:2]) + 12
+    #             minutes = time[2:5]
+    #             return f"{hours}{minutes}"
+    #     else:
+    #         return time[:5]
+
+
+
+
+
+print(time_converter('12:30 p.m.'))
+
 # if __name__ == '__main__':
 #     print("Example:")
 #     print(time_converter('12:30 p.m.'))
