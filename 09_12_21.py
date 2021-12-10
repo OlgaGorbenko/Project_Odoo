@@ -1,3 +1,22 @@
+# Solution 2
+
+def get_custom_cm(custom_value):
+    standard_values = [180, 145, 164, 153, 178]
+    new_list = [abs(x-custom_value) for x in standard_values]
+    return min(new_list)
+
+if __name__ == '__main__':
+    print("Example:")
+    print('For custom value 137 =', get_custom_cm(137))
+
+    assert get_custom_cm(137) == 8
+    assert get_custom_cm(155) == 2
+    assert get_custom_cm(161) == 3
+    assert get_custom_cm(167) == 3
+    assert get_custom_cm(189) == 9
+    assert get_custom_cm(179) == 1
+
+
 # Даны стандартные размеры диванов
 #
 # Нужно найти наименьшее значение отклонения от стандартного размера
