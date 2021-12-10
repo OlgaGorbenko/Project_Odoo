@@ -13,7 +13,6 @@
 #
 # Результат:
 # Custom cm = 4 cm
-#
 
 
 def get_custom_cm(custom_value):
