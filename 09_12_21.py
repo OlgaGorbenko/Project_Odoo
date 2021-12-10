@@ -19,7 +19,7 @@
 def get_custom_cm(custom_value):
     standard_values = [180, 140, 160, 150, 170]
     if custom_value > standard_values[0]:
-        return abs(standard_values[0] - custom_value)
+        return custom_value - standard_values[0]
     else:
         new_value = round(custom_value, -1)
         delt = abs(new_value - custom_value)
@@ -119,6 +119,43 @@ def mario(n):
 
 
 print(mario(8))
+
+
+# if __name__ == '__main__':
+#     if len(sys.argv) == 2:
+#         n = int(sys.argv[1])
+#     else:
+#         n = 8
+#     mario(n)
+
+
+# Данн размер препятствия n
+# Нужно вывести в консоль конструкцию такой формы и высотой n:
+       #  #
+      ##  ##
+     ###  ###
+    ####  ####
+   #####  #####
+  ######  ######
+ #######  #######
+########  ########
+
+
+import sys
+
+
+def mario(n):
+    symb_1 = "#"
+    symb_2 = " "
+    k = 1
+    while k != n+1:
+        print(symb_2*(n-k), symb_1*k, symb_1*k, symb_2*(n-k))
+        k += 1
+    return
+
+
+print(mario(8))
+
 
 # if __name__ == '__main__':
 #     if len(sys.argv) == 2:
